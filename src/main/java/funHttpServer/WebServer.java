@@ -196,15 +196,18 @@ class WebServer {
         } else if (request.contains("multiply?")) {
           // This multiplies two numbers, there is NO error handling, so when
           // wrong data is given this just crashes
-
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           // extract path parameters
+          
+          
+          //removes "multiply?" from request, and passes to splitQuery
           query_pairs = splitQuery(request.replace("multiply?", ""));
-
+          //query_pairs should now be a map with a pair of strings
+          
           // extract required fields from parameters
           Integer num1 = Integer.parseInt(query_pairs.get("num1"));
           Integer num2 = Integer.parseInt(query_pairs.get("num2"));
-
+          
           // do math
           Integer result = num1 * num2;
 
@@ -268,7 +271,13 @@ class WebServer {
   public static Map<String, String> splitQuery(String query) throws UnsupportedEncodingException {
     Map<String, String> query_pairs = new LinkedHashMap<String, String>();
     // "q=hello+world%2Fme&bob=5"
-    String[] pairs = query.split("&");
+    //added try catch to catch exception from split()
+    try {
+    	String[] pairs = query.split("&");
+    }
+    catch (Exception e) {
+    	throw e;
+    }
     // ["q=hello+world%2Fme", "bob=5"]
     for (String pair : pairs) {
       int idx = pair.indexOf("=");
