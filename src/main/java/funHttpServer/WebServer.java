@@ -247,10 +247,10 @@ class WebServer {
           StringBuilder output = new StringBuilder();
           for (int i = 0; i < jarr.length(); i++) {
         	  JSONObject json = jarr.getJSONObject(i);
-        	  output.append("Repo Name:" + json.getString("full_name") + "\n");
-        	  output.append("Repo ID:" + json.getInt("id") + "\n");
+        	  output.append("Repo Name:" + json.getString("full_name") + "<br>");
+        	  output.append("Repo ID:" + json.getInt("id") + "<br>");
         	  JSONObject owner = json.getJSONObject("owner");
-        	  output.append("Owner Login:" + owner.getString("login") + "\n");
+        	  output.append("Owner Login:" + owner.getString("login") + "<br><br>");
           }
 
           //JSONObject json  = jarr.getJSONObject(0);
