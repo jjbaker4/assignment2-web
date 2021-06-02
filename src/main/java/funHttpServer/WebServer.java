@@ -243,8 +243,10 @@ class WebServer {
 
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           query_pairs = splitQuery(request.replace("github?", ""));
-          JSONObject json  = new JSONObject(fetchURL("https://api.github.com/" + query_pairs.get("query")));
-          String jsonStr = json.toString();
+          String jsonStr = fetchURL("https://api.github.com/" + query_pairs.get("query"));
+          jsonStr = jsonStr.substring(0,jsonStr.length()-1);
+          
+          JSONObject json  = new JSONObject(jsonStr);
           //String json = fetchURL("https://api.github.com/" + query_pairs.get("query"));
           System.out.println(jsonStr);
 
