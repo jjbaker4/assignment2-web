@@ -228,7 +228,7 @@ class WebServer {
 	          builder.append("\n");
 	          builder.append("Please check the input format of the request.\n" + 
 	          "the correct format is:\n/multiply?num1=A&num2=B\nwhere A and B" +
-	        		  "are the numbers you wish to multiply");
+	        		  " are the numbers you wish to multiply");
           }
 
         } else if (request.contains("github?")) {
