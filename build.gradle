@@ -7,7 +7,7 @@ dependencies {
 
 repositories {
   maven{
-      url "https://mvnrepository.com/artifact/org.json/json"
+      url "https://mvnrepository.com/artifact"
   }
 }
 
