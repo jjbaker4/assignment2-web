@@ -219,8 +219,6 @@ class WebServer {
 	          builder.append("\n");
 	          builder.append("Result is: " + result);
 	
-	          // TODO: Include error handling here with a correct error code and
-	          // a response that makes sense
           }
           catch (Exception e) {
         	  //build response
@@ -280,12 +278,8 @@ class WebServer {
    * @return Map of all parameters and their specific values
    * @throws UnsupportedEncodingException If the URLs aren't encoded with UTF-8
    */
-  public static Map<String, String> splitQuery(String query) throws UnsupportedEncodingException,
-  IllegalArgumentException{
+  public static Map<String, String> splitQuery(String query) throws UnsupportedEncodingException {
     Map<String, String> query_pairs = new LinkedHashMap<String, String>();
-    if (!query.contains("&")) {
-    	throw new IllegalArgumentException("No '&' seperator in query.");
-    }
     // "q=hello+world%2Fme&bob=5"
     String[] pairs = query.split("&");
     // ["q=hello+world%2Fme", "bob=5"]
