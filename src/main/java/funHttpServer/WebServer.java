@@ -244,22 +244,37 @@ class WebServer {
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           query_pairs = splitQuery(request.replace("github?", ""));
           JSONArray jarr = new JSONArray(fetchURL("https://api.github.com/" + query_pairs.get("query")));
-          JSONObject json  = jarr.getJSONObject(0);
-          String jsonStr = json.toString();
+          StringBuilder output = new StringBuilder();
+          for (int i = 0; i < jarr.length(); i++) {
+        	  JSONObject json = jarr.getJSONObject(i);
+        	  output.append("Repo Name:" + json.getString("full_name") + "\n");
+        	  output.append("Repo ID:" + json.getString("id") + "\n");
+        	  JSONObject owner = json.getJSONObject("owner");
+        	  output.append("Owner Login:" + owner.getString("login") + "\n");
+          }
+
+          //JSONObject json  = jarr.getJSONObject(0);
+          //String jsonStr = json.toString();
           //String jsonStr = fetchURL("https://api.github.com/" + query_pairs.get("query"));
           //jsonStr = jsonStr.substring(0,jsonStr.length()-1);
           //JSONObject json  = new JSONObject(jsonStr);
           //String json = fetchURL("https://api.github.com/" + query_pairs.get("query"));
-          System.out.println(jsonStr);
-
-          builder.append("Check the todos mentioned in the Java source file");
+          //System.out.println(jsonStr);
+          
+          // Generate response
+          builder.append("HTTP/1.1 200 OK\n");
+          builder.append("Content-Type: text/html; charset=utf-8\n");
+          builder.append("\n");
+          builder.append(output.toString());
+          
+          //builder.append("Check the todos mentioned in the Java source file");
           // TODO: Parse the JSON returned by your fetch and create an appropriate
           // response
           // and list the owner name, owner id and name of the public repo on your webpage, e.g.
           // amehlhase, 46384989 -> memoranda
           // amehlhase, 46384989 -> ser316examples
           // amehlhase, 46384989 -> test316
-
+          
         } else {
           // if the request is not recognized at all
 
