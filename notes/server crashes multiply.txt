@@ -1,8 +1,0 @@
-/multiply?num1=7&num2=
-Exception in thread "main" java.lang.NumberFormatException: For input string: ""
-        at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
-        at java.base/java.lang.Integer.parseInt(Integer.java:662)
-        at java.base/java.lang.Integer.parseInt(Integer.java:770)
-        at funHttpServer.WebServer.createResponse(WebServer.java:209)
-        at funHttpServer.WebServer.<init>(WebServer.java:50)
-        at funHttpServer.WebServer.main(WebServer.java:31)
