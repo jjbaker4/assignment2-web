@@ -243,8 +243,10 @@ class WebServer {
 
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           query_pairs = splitQuery(request.replace("github?", ""));
-          String json = fetchURL("https://api.github.com/" + query_pairs.get("query"));
-          System.out.println(json);
+          JSONObject json  = new JSONObject(fetchURL("https://api.github.com/" + query_pairs.get("query")));
+          String jsonStr = json.toString();
+          //String json = fetchURL("https://api.github.com/" + query_pairs.get("query"));
+          System.out.println(jsonStr);
 
           builder.append("Check the todos mentioned in the Java source file");
           // TODO: Parse the JSON returned by your fetch and create an appropriate
@@ -300,7 +302,7 @@ class WebServer {
    */
   public static String buildFileList() {
     ArrayList<String> filenames = new ArrayList<>();
-
+    
     // Creating a File object for directory
     File directoryPath = new File("www/");
     filenames.addAll(Arrays.asList(directoryPath.list()));
