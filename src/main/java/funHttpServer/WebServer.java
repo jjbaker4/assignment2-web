@@ -268,16 +268,14 @@ class WebServer {
    * @return Map of all parameters and their specific values
    * @throws UnsupportedEncodingException If the URLs aren't encoded with UTF-8
    */
-  public static Map<String, String> splitQuery(String query) throws UnsupportedEncodingException {
+  public static Map<String, String> splitQuery(String query) throws UnsupportedEncodingException,
+  IllegalArgumentException{
     Map<String, String> query_pairs = new LinkedHashMap<String, String>();
+    if (!query.contains("&")) {
+    	throw new IllegalArgumentException("No '&' seperator in query.");
+    }
     // "q=hello+world%2Fme&bob=5"
-    //added try catch to catch exception from split()
-    try {
-    	String[] pairs = query.split("&");
-    }
-    catch (Exception e) {
-    	throw e;
-    }
+    String[] pairs = query.split("&");
     // ["q=hello+world%2Fme", "bob=5"]
     for (String pair : pairs) {
       int idx = pair.indexOf("=");
