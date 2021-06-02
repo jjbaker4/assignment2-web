@@ -205,7 +205,9 @@ class WebServer {
 	          //removes "multiply?" from request, and passes to splitQuery
 	          query_pairs = splitQuery(request.replace("multiply?", ""));
 	          //query_pairs should now be a map with a pair of strings
-	          
+	          if(query_pairs.size()!=2) {
+	        	  throw new Exception("Wrong number of arguments.");
+	          }
 	          // extract required fields from parameters
 	          Integer num1 = Integer.parseInt(query_pairs.get("num1"));
 	          Integer num2 = Integer.parseInt(query_pairs.get("num2"));
